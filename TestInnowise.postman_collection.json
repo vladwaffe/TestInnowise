@@ -23,7 +23,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"firstname\": \"John123\",\r\n    \"lastname\": \"Doe456\",\r\n    \"manager\": \"Michael Scott\",\r\n    \"status\": \"active\",\r\n    \"departmentIds\": [1, 3]\r\n}\r\n",
+					"raw": "{\r\n    \"firstname\": \"John\",\r\n    \"lastname\": \"Do\",\r\n    \"manager\": \"Michael Scott\",\r\n    \"status\": \"active\",\r\n    \"departmentIds\": [1, 3]\r\n}\r\n",
 					"options": {
 						"raw": {
 							"language": "json"

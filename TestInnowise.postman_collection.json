@@ -1,0 +1,182 @@
+{
+	"info": {
+		"_postman_id": "81f77e01-c8d6-43c7-a59f-c86348174b16",
+		"name": "TestInnowise",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38356436"
+	},
+	"item": [
+		{
+			"name": "new worker",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQURNSU4iLCJzdWIiOiJBZG1pbiIsImlhdCI6MTczNDY4MzE2NSwiZXhwIjoxNzM0Njg0OTY1fQ.PPOAcu6EvCe6hl4atbgTCXr30N8fKLV1uDrGyxirp6I",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstname\": \"John123\",\r\n    \"lastname\": \"Doe456\",\r\n    \"manager\": \"Michael Scott\",\r\n    \"status\": \"active\",\r\n    \"departmentIds\": [1, 3]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url1}}/workers",
+					"host": [
+						"{{url1}}"
+					],
+					"path": [
+						"workers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiVVNFUiIsInN1YiI6IkJhc2FudCIsImlhdCI6MTczNDY4MTI0MiwiZXhwIjoxNzM0NjgzMDQyfQ.d29y9Ld25n28juo2x1kCET3tWYM_m31j_U6eU5i7Jys",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url4}}/workers/all",
+					"host": [
+						"{{url4}}"
+					],
+					"path": [
+						"workers",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get image",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8083/image/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"image",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url1}}/workers/1",
+					"host": [
+						"{{url1}}"
+					],
+					"path": [
+						"workers",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post image",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "postman-cloud:///1efb6177-4e1e-48c0-b890-e4dd446cdc31"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8083/image/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"image",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "reg admin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"Admin\",\r\n    \"password\":\"Pwd1\",\r\n    \"email\":\"basant@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url1}}/auth/register/admin",
+					"host": [
+						"{{url1}}"
+					],
+					"path": [
+						"auth",
+						"register",
+						"admin"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

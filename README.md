@@ -4,6 +4,7 @@
 In this project, all the requirements that were set have been fulfilled, but there are some comments:
 * The saving of images is done separately from the user itself, as is the modification. It can be obtained both together with the user as part of a JSON response and separately as image/png.
 * The table with images is not populated by migration, unlike the main database. Therefore, it is necessary to manually upload images to the image table.
+* The service of the departments is designed with the potential for expansion and carries only basic functionality.
 
 Additionally, all information about the services is available at the following addresses:
 * `http://localhost:8081/swagger-ui/index.html#/`  --department-connect-service

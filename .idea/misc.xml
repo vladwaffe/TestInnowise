@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/WorkerService/pom.xml" />
+        <option value="$PROJECT_DIR$/DepartmentService/pom.xml" />
+        <option value="$PROJECT_DIR$/ConnectDepartmentAndWorkerService/pom.xml" />
+        <option value="$PROJECT_DIR$/ImageServise/ImageService/pom.xml" />
+        <option value="$PROJECT_DIR$/ImageService/pom.xml" />
+        <option value="$PROJECT_DIR$/../../../../TestInnowiseApi/GatewayServer/pom.xml" />
+        <option value="$PROJECT_DIR$/../../../../TestInnowiseApi/identity-service/pom.xml" />
+        <option value="$PROJECT_DIR$/../../../../TestInnowiseApi/EurekaService/pom.xml" />
+        <option value="$PROJECT_DIR$/identity-service/pom.xml" />
+        <option value="$PROJECT_DIR$/GatewayServer/pom.xml" />
+        <option value="$PROJECT_DIR$/EurekaService/pom.xml" />
+      </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/../../../../TestInnowiseApi/EurekaService/pom.xml" />
+        <option value="$PROJECT_DIR$/../../../../TestInnowiseApi/GatewayServer/pom.xml" />
+        <option value="$PROJECT_DIR$/../../../../TestInnowiseApi/identity-service/pom.xml" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" project-jdk-name="23" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>

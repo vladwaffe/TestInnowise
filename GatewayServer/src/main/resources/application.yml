@@ -1,0 +1,49 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: image-service
+          uri: lb://IMAGESERVICE
+          predicates:
+            - Path=/image/**
+
+        - id: department-service
+          uri: lb://DEPARTMENTSERVICE
+          predicates:
+            - Path=/departments
+            - Path=departments/**
+          filters:
+            - AuthenticationFilter
+
+        - id: worker-service
+          uri: lb://WORKERSERVICE
+          predicates:
+            - Path=/workers/**
+            - Path=/workers
+          filters:
+            - AuthenticationFilter
+
+        - id: worker-service1
+          uri: lb://WORKERSERVICE
+          predicates:
+            - Path=/workers/all
+          filters:
+            - AuthenticationFilter
+
+        - id: department-connect-service
+          uri: lb://CONNECTDEPARTMENTANDWORKERSERVICE
+          predicates:
+            - Path=/department/**
+            - Path=/department
+          filters:
+            - AuthenticationFilter
+
+        - id: identity-service
+          uri: lb://IDENTITY-SERVICE
+          predicates:
+            - Path=/auth/**
+
+eureka:
+  client:
+    service-url:
+      defaultZone : http://localhost:8761/eureka/

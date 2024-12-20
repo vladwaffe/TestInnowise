@@ -1,0 +1,170 @@
+services:
+  workerservice:
+    build: ./WorkerService
+    container_name: workerservice
+    ports:
+      - "8084:8084"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db1:5432/Workers
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=root
+      - SERVER_PORT=8084
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka2:8761/eureka/
+    depends_on:
+      db1:
+        condition: service_started
+      eureka2:
+        condition: service_healthy
+    networks:
+      - my_network
+
+  department-connect-service:
+    build: ./ConnectDepartmentAndWorkerService
+    container_name: department-connect-service
+    ports:
+      - "8081:8081"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db1:5432/Workers
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=root
+      - SERVER_PORT=8081
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka2:8761/eureka/
+    depends_on:
+      db1:
+        condition: service_started
+      eureka2:
+        condition: service_healthy
+    networks:
+      - my_network
+
+  department-service:
+    build: ./DepartmentService
+    container_name: department-service
+    ports:
+      - "8082:8082"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db1:5432/Workers
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=root
+      - SERVER_PORT=8082
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka2:8761/eureka/
+    depends_on:
+      db1:
+        condition: service_started
+      eureka2:
+        condition: service_healthy
+    networks:
+      - my_network
+
+  image-service:
+    build: ./ImageService
+    container_name: image-service
+    ports:
+      - "8083:8083"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db2:5432/Images
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=root
+      - SERVER_PORT=8083
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka2:8761/eureka/
+    depends_on:
+      db2:
+        condition: service_started
+      eureka2:
+        condition: service_healthy
+    networks:
+      - my_network
+
+
+  identity-service:
+    build: ./identity-service
+    container_name: identity-service
+    ports:
+      - "8085:8085"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db3:5432/Users
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=root
+      - SERVER_PORT=8085
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka2:8761/eureka/
+    depends_on:
+      db3:
+        condition: service_started
+      eureka2:
+        condition: service_healthy
+    networks:
+      - my_network
+
+  gatewayserver:
+      build: ./GatewayServer
+      container_name: gatewayserver
+      ports:
+        - "8080:8080"
+      environment:
+        - SERVER_PORT=8080
+        - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka2:8761/eureka/
+      depends_on:
+        eureka2:
+          condition: service_healthy
+      networks:
+        - my_network
+
+
+  eureka2:
+    build: ./EurekaService
+    container_name: eureka2
+    ports:
+      - "8761:8761"
+    environment:
+      SERVER_PORT: 8761
+    networks:
+      - my_network
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8761/" ]
+      interval: 10s
+      timeout: 10s
+      retries: 3
+
+
+
+  db1:
+    image: postgres:13
+    container_name: db1
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=Workers
+    ports:
+      - "5433:5432"
+    networks:
+      - my_network
+
+  db2:
+    image: postgres:13
+    container_name: db2
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=Images
+    ports:
+      - "5434:5432"
+    networks:
+      - my_network
+
+  db3:
+    image: postgres:13
+    container_name: db3
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=Users
+    ports:
+      - "5435:5432"
+    networks:
+      - my_network
+
+
+
+networks:
+  my_network:
+    driver: bridge

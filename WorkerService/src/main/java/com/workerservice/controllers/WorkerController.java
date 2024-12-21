@@ -31,13 +31,14 @@ public class WorkerController {
     public List<AnswerWorkerDTO> getAllWorkers(
             @RequestParam(required = false) String name, //фильтрация по имени сотрудника
             @RequestParam(required = false) List<Long> departmentIds, //фильтр по отделам
+            @RequestParam(required = false) String managerName, //фильтр по менеджеру
             @RequestParam(required = false) String status, //фильтрация по статусу сотрудника
             @RequestParam(defaultValue = "id") String sortField, //поле для сортировки (по умолчанию id)
             @RequestParam(defaultValue = "true") boolean ascending, //порядок сортировки (по умолчанию true для возрастания)
             @RequestParam(defaultValue = "1")  int page, //номер страницы для пагинации (по умолчанию 1).
             @RequestParam(defaultValue = "10") int size) //количество записей на странице (по умолчанию 10)
     {
-        return workerService.findAllWithFilters(name, departmentIds, status, sortField, ascending, page, size);
+        return workerService.findAllWithFilters(name, departmentIds, managerName, status, sortField, ascending, page, size);
     }
 
 
